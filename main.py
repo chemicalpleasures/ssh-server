@@ -23,11 +23,11 @@ class SSHServer(paramiko.ServerInterface):
 
 # Set up the SSH server
 def start_ssh_server():
-    host_key = paramiko.RSAKey(filename='./test-rsa.key')  # You can generate a test-rsa.key using ssh-keygen
+    host_key = paramiko.RSAKey(filename='./test-rsa.key')  # Corrected filename
     port = 2222  # Choose any available port
 
     server = SSHServer()
-    ssh_transport = paramiko.Transport(('localhost', port))
+    ssh_transport = paramiko.Transport(('localhost', port))  # Use 'localhost' or the actual IP address
     ssh_transport.add_server_key(host_key)
 
     print("SSH server listening on port {}".format(port))
@@ -45,6 +45,7 @@ def start_ssh_server():
 
         # Start a new thread to handle the connection
         threading.Thread(target=handle_client, args=(client,)).start()
+
 
 def handle_client(client):
     transport = client.get_transport()
