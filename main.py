@@ -27,7 +27,7 @@ def start_ssh_server():
     port = 2222  # Choose any available port
 
     server = SSHServer()
-    ssh_transport = paramiko.Transport(('localhost', port))  # Use 'localhost' or the actual IP address
+    ssh_transport = paramiko.Transport(('127.0.0.1', port))  # Use 'localhost' or the actual IP address
     ssh_transport.add_server_key(host_key)
 
     print("SSH server listening on port {}".format(port))
